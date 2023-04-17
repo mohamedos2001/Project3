@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/all.min.css"/>
+</head>
+<style>
+body{
+    display: flex;align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+.content{
+    height: 400px;
+    width: 750px;
+    overflow: hidden;
+    position: relative;
+}
+.content.images{
+    height: 100%;
+    width: 100%;
+}
+.images img{
+    height: 100%;
+    width: 100%;
+}
+.btm-sliders{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    display: flex;
+    transform: translate(-50%);
+}
+.btm-sliders span{
+    height: 15px;
+    width: 50px;
+    border: 2px solid #1F373D;
+    margin: 0 3px ;
+    cursor: pointer;
+}
+.btm-sliders span:hover{
+    background: white;
+}
+.content .slide {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    background: #1F373D;
+    cursor: pointer;
+    
+}
+.content .slide:hover{
+    background: #1f373ddc;
+}
+
+.slide span{
+    font-size: 35px;
+    color: #FFCC01;
+    line-height: 41px;
+    cursor: pointer;
+}
+.content .right{
+    right: 0;
+}
+</style>
+<body>
+<div class="content">
+    <div class="images">
+     <img src="1.jpg">  
+     <img src="2.jpg"> 
+     <img src="3.jpg">
+     <img src="4.jpg"> 
+     <img src="5.jpg">    
+    </div>
+     <div onclick = "side_slide(-1)" class="slide left">
+         <span class="fas fa-angle-left"></span>
+     </div> 
+     <div onclick = "side_slide(1)" class="slide right">
+        <span class="fas fa-angle-right"></span>
+    </div>   
+   <div class="btm-sliders">
+     <span onclick = "btm_slide(1)"></span>
+     <span onclick = "btm_slide(2)"></span>
+     <span onclick = "btm_slide(3)"></span>
+     <span onclick = "btm_slide(4)"></span>
+     <span onclick = "btm_slide(5)"></span>
+
+
+   </div>
+   </div>
+<script>
+            var indexvalue = 1;
+           showImg(indexvalue);
+       function btm_slide(e){showImg(indexvalue = e);}
+       function side_slide(e){showImg(indexvalue += e);}
+       function showImg(e){
+       var i;
+         const img = document.querySelectorAll('img');
+         const sliders = document.querySelectorAll('.btm-sliders span');
+        if(e > img.length){indexvalue = 1}
+        if(e < 1){indexvalue = img.length}
+       for(i = 0; i < img.length; i++){
+        img[i].style.display = "none"; 
+       }
+       for(i = 0; i < sliders.length; i++){
+           sliders[i].style.background = "#1F373D";
+       } 
+       img[indexvalue-1].style.display = "block"; 
+       sliders[indexvalue-1].style.background = "#FFCC01";
+        
+       
+     }
+
+</script>
+
+
+
+
+</body>
+</html>
